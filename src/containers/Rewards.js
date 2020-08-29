@@ -17,11 +17,10 @@ class Rewards extends Component {
 
     getTotalRewards = () => {
         const { purchaseHistory } = this.props;
-        const totalPoints = purchaseHistory.reduce((total, ele) => {
-            const selTranPoints = this.calculateTransactionPoints(ele.amount);
-            const totalPoints = selTranPoints + total;
+        const totalPoints = purchaseHistory.length > 0 ? purchaseHistory.reduce((total, ele) => {
+            const totalPoints = ele.rewards + total;
             return totalPoints
-        }, 0)
+        }, 0) : 0;
         return totalPoints
     }
 
